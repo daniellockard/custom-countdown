@@ -1,0 +1,41 @@
+{
+  "name": "custom-countdown",
+  "version": "0.0.0",
+  "description": "Custom Countdown",
+  "homepage": "",
+  "author": {
+    "name": "Danny Lockard",
+    "email": "danielhlockard@gmail.com",
+    "url": ""
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "countdown-setup",
+        "title": "Countdown Setup",
+        "width": 2,
+        "file": "countdown-setup.html",
+        "headerColor": "#525F78"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "index.html",
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
+  "license": "Apache-2.0"
+}

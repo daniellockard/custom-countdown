@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<style>
+		body {
+			font-family: sans-serif;
+		}
+
+		.monospace {
+			font-family: monospace;
+		}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+	<span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+	<script>
+		var timeLeftRep = nodecg.Replicant('timeleft', {defaultValue: false, persistent: false});
+
+		var hours   = $("#hours")[0];
+		var minutes = $("#minutes")[0];
+		var seconds = $("#seconds")[0];
+		var count = 0;
+
+		function pad2(n) {
+			return n < 10 ? '0' + n : n;
+		}
+
+		timeLeftRep.on('change', (newValue, oldValue) => {
+			console.log(`timeLeftRep changed from ${oldValue} to ${newValue}`);
+			count = newValue;
+			show();
+		});
+
+		function show() {
+			var h = Math.floor(count % (3600*24) / 3600);
+			var m = Math.floor(count % 3600 / 60);
+			var s = Math.floor(count % 3600 % 60);
+			hours.innerHTML = pad2(h);
+			minutes.innerHTML = pad2(m);
+			seconds.innerHTML = pad2(s);
+		}
+	</script>
+</body>
+</html>

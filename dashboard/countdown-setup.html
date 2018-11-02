@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<style>
+		.monospace {
+			font-family: monospace;
+		}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+	<form>
+		<div class="form-group">
+			<label for="hours">Hours:</label>
+			<input type="text" id="hours" class="form-control" name="hours" value="0" size="2" maxlength="2" />
+		</div>
+
+		<div class="form-group">
+			<label for="minutes">Minutes:</label>
+			<input type="text" id="minutes" class="form-control" name="minutes" value="1" size="2" maxlength="2" />
+		</div>
+		<div class="form-group">
+			<label for="seconds">Seconds:</label>
+			<input type="text" id="seconds" class="form-control" name="seconds" value="0" size="2" maxlength="2" />
+		</div>
+
+		<button type="button" id="buttonAdd" class="btn btn-primary">Add / Start</button>
+	</form>
+	</div>
+</body>
+	<script>
+$(function() {
+	var timeLeftRep = nodecg.Replicant('timeleft', {defaultValue: false, persistent: false})
+	var startedRep = nodecg.Replicant('started', {defaultValue: false, persistent: false})
+	var hours   = $("#hours")[0];
+	var minutes = $("#minutes")[0];
+	var seconds = $("#seconds")[0];
+	var button  = $("#buttonAdd");
+	var count = 0;
+
+
+	button.click(function () {
+		var s = parseInt(seconds.value, 10);
+		var m = parseInt(minutes.value, 10);
+		var h = parseInt(hours.value, 10);
+		if (isNaN(s) || isNaN(m) || isNaN(h)) return;
+		seconds.value = s;
+		minutes.value = m;
+		hours.value = h;
+		count += (h * 3600) + (m * 60) + s;
+		timeLeftRep.value = count;
+		startedRep.value = true;
+	});
+});
+
+	</script>
+</html>
